@@ -1,0 +1,22 @@
+
+<div class="container">
+
+<h1>My Universities WishList </h1>
+
+<table class="customers">
+  <tr>
+    <th>University Name </th>
+    <th>Country</th>
+    <th>Checked </th>
+    <th>Remove  </th>
+  </tr>
+  <tr  *ngFor="let uni of storageWishlist ; let i=index">
+    <td>{{uni.name}}</td>
+    <td>{{uni.country}}</td>
+    <td><input id="checkBox" type="checkbox" [checked]="uni.isChecked"  (change)="checkValue(uni)" /> <label for="checkBox"> {{uni.isChecked ? "Checked" : 'Check'}}</label>
+    </td>
+    <td><button (click)="removeWishItem(uni)">remove</button></td>
+  </tr>
+
+</table>
+</div>

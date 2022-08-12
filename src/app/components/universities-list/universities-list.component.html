@@ -1,0 +1,46 @@
+<div
+class="form-dev"
+(change)="onSearchUniversity()"
+(keyup)="onSearchUniversity()"
+>
+
+<select
+  class="select"
+  [(ngModel)]="selectedCountry"
+  (ngModelChange)="(onSearchUniversity())"
+>
+  <option selected hidden>{{ selectedCountry }}</option>
+
+  <option *ngFor="let country of countries" [value]="country">
+    {{ country }}
+  </option>
+</select>
+<input
+  [(ngModel)]="searchName"
+  name="searchName"
+  type="text"
+  class="input"
+  placeholder=" Search for university name ..."
+  autofocus
+/>
+</div>
+
+<div class="wrapper">
+	<div class="header">universities</div>
+    <div class="loading" *ngIf="isLoading">
+        <h1> Loading ...</h1>
+    </div>
+	<div class="cards_wrap">
+		<div *ngFor="let uni of universities | slice:0:10; let i=index" class="card_item">
+			<div class="card_inner">
+				<h2 class="uni_name">{{uni.name}}</h2>
+				<p class="country"> country : {{uni.country}}</p>
+				<p class="code"> country code :{{uni.alpha_two_code}}</p>
+				<div class="web_pages"> <a href="{{uni.web_pages[0]}}"><p>click here to visit website</p></a> </div>
+                <div  >
+                    <button [disabled]="checkWishlist(uni)"  class="wishlist-btn" (click)="addTowishlist(uni)">{{checkWishlist(uni)?  'Added'  : 'Add to wishlist'}}</button>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>  
